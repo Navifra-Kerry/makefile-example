@@ -7,10 +7,14 @@ DEPS = Makefile.depend
 
 INCLUDES = -I./include
 CXXFLAGS = -O2 -Wall $(INCLUDES)
+CXXFLAGS_DEBUG = -g -O0 -Wall $(INCLUDES)  # -g 플래그를 추가하여 디버깅 정보 포함
 LDFLAGS = -lm
 
 
 all: $(TARGET)
+
+debug: CXXFLAGS = $(CXXFLAGS_DEBUG)
+debug: all
 
 $(TARGET): $(OBJS) $(HEADS)
 	$(CXX) $(LDFLAGS) -o $@ $(OBJS)
